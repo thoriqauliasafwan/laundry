@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2020 at 07:36 PM
+-- Generation Time: Oct 21, 2020 at 07:49 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `laundry`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paket`
+--
+
+CREATE TABLE `paket` (
+  `id_paket` varchar(3) NOT NULL,
+  `nama_paket` varchar(15) NOT NULL,
+  `harga_per_kilo` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `paket`
+--
+
+INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_per_kilo`) VALUES
+('p01', 'biasa', 1000),
+('p02', 'express', 3000);
 
 -- --------------------------------------------------------
 
@@ -50,6 +70,12 @@ INSERT INTO `transaksi` (`id_transaksi`, `tanggal`, `nama_pelanggan`, `berat`, `
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `paket`
+--
+ALTER TABLE `paket`
+  ADD PRIMARY KEY (`id_paket`);
 
 --
 -- Indexes for table `transaksi`
