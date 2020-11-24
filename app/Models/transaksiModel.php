@@ -68,6 +68,36 @@ class TransaksiModel extends Model
         }
     }
 
+    // method untuk mendapatkan jumlah pemasukan
+    public function _getPemasukan($tanggal = ''){
+        if($tanggal == null){
+            $result = $this->selectSum('harga_total')
+            ->get()
+            ->getResult();
+            return $result[0];
+        }else{
+            $result = $this->where('tanggal', $tanggal)
+            ->selectSum('harga_total')
+            ->get()
+            ->getResult();
+            return $result[0];
+        }
+    }
+
+    
+
+    // method untuk mendapatkan jumlah transaksi
+    public function _getTransaksi($tanggal = ''){
+        if($tanggal == null){
+            $result = $this->countAllResults();
+            return $result;
+        }else{
+            $result = $this->where('tanggal', $tanggal)
+            ->countAllResults();
+            return $result;
+        }
+    }
+
     // method untuk insert data
     public function _insert($data)
     {

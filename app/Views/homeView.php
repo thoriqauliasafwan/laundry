@@ -17,6 +17,8 @@
 <body>
     <h1>Selamat Datang!</h1>
     <br>
+    <a href="/Report">Laporan</a>
+    <hr>
     <!-- ================= FORM TRANSAKSI ================== -->
     <form action="Home/insert" method="post">
         <label for="nama_pelanggan">Nama Pelanggan</label>
