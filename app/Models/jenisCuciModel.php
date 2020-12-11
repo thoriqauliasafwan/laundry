@@ -4,19 +4,19 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PaketModel extends Model
+class JenisCuciModel extends Model
 {
     // nama tabel
-    protected $table = 'paket';
+    protected $table = 'jenis_cuci';
     // nama primary key
-    protected $primaryKey = 'id_paket';
+    protected $primaryKey = 'id_jenis';
     // tipe data return
     protected $returnType = 'object';
     // fields yang dapat diubah
     protected $allowedFields = [
-        'id_paket',
-        'nama_paket',
-        'kelipatan_harga',
+        'id_jenis',
+        'pilihan_cuci',
+        'harga_cuci',
     ];
 
     // method untuk get data

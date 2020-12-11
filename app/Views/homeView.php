@@ -23,8 +23,18 @@
     <form action="Home/insert" method="post">
         <label for="nama_pelanggan">Nama Pelanggan</label>
         <input type="text" name="nama_pelanggan" required>
+        <label for="alamat_pelanggan">Alamat Pelanggan</label>
+        <input type="text" name="alamat_pelanggan" required>
+        <label for="nomor_hp">Nomor HP</label>
+        <input type="text" name="nomor_hp" required>
         <label for="berat">Berat (Kg)</label>
         <input type="number" name="berat" required>
+        <label for="id_paket">Pilih Jenis Cuci</label>
+        <select name="id_jenis" id="id_jenis">
+            <?php foreach ($jenisCuci as $jenisCuciItem) : ?>
+                <option value="<?= $jenisCuciItem->id_jenis ?>"><?= $jenisCuciItem->pilihan_cuci ?></option>
+            <?php endforeach ?>
+        </select>
         <label for="id_paket">Pilih Paket</label>
         <select name="id_paket" id="id_paket">
             <?php foreach ($paket as $paketItem) : ?>
@@ -39,7 +49,7 @@
         <thead>
             <tr>
                 <td>ID Transaksi</td>
-                <td>Nama Pelanggan</td>
+                <td>Nomor HP</td>
                 <td>Berat (Kg)</td>
                 <td>Status Pembayaran</td>
                 <td>Status Laundry</td>
@@ -50,7 +60,7 @@
             <?php foreach ($transaksi as $transaksiItem) : ?>
                 <tr>
                     <td><?= $transaksiItem->id_transaksi ?></td>
-                    <td><?= $transaksiItem->nama_pelanggan ?></td>
+                    <td><?= $transaksiItem->nomor_hp ?></td>
                     <td><?= $transaksiItem->berat ?></td>
                     <td><?= $transaksiItem->status_bayar ?></td>
                     <td><?= $transaksiItem->status_laundry ?></td>

@@ -2,6 +2,8 @@
 
 use App\Models\PaketModel;
 use App\Models\TransaksiModel;
+use App\Models\JenisCuciModel;
+use App\Models\PelangganModel;
 
 class Home extends BaseController
 {
@@ -9,11 +11,13 @@ class Home extends BaseController
 	public function index()
 	{
 		// inisialisasi model
-		$model = new PaketModel;
+		$paketModel = new PaketModel;
+		$jenisCuciModel = new JenisCuciModel;
 		$transaksiModel = new TransaksiModel;
 		// mengirim data ke View
 		$data = [
-			'paket' => $model->_get(),
+			'paket' => $paketModel->_get(),
+			'jenisCuci' => $jenisCuciModel->_get(),
 			'transaksi' => $transaksiModel->_getWithPaket(),
 		];
 		return view('homeView', $data);
@@ -27,27 +31,40 @@ class Home extends BaseController
 			// inisialisasi model
 			$model = new TransaksiModel;
 			$paketModel = new PaketModel;
+			$jenisCuciModel = new JenisCuciModel;
+			$pelangganModel = new PelangganModel;
 
 			// mengambil data dari form
 			$nama_pelanggan = $this->request->getPost('nama_pelanggan');
+			$alamat_pelanggan = $this->request->getPost('alamat_pelanggan');
+			$nomor_hp = $this->request->getPost('nomor_hp');
 			$berat = $this->request->getPost('berat');
 			$id_paket = $this->request->getPost('id_paket');
+			$id_jenis = $this->request->getPost('id_jenis');
 
 			// mengambil harga perkilo sesuai paket yang dipilih
-			$harga_per_kilo = $paketModel->_get($id_paket)->harga_per_kilo;
+			$hargaPaket = $paketModel->_get($id_paket)->kelipatan_harga;
+			$hargaJenisCuci = $jenisCuciModel->_get($id_jenis)->harga_cuci;
 			
 			// menghitung harga total
-			$harga_total = $berat * $harga_per_kilo;
+			$harga_total = $berat * $hargaJenisCuci * $hargaPaket;
 
 			// memasukkan data-data ke dalam satu array $data
-			$data = [
-				'nama_pelanggan' => $nama_pelanggan,
+			$dataTransaksi = [
+				'nomor_hp' => $nomor_hp,
 				'berat' => $berat,
 				'id_paket' => $id_paket,
+				'id_jenis' => $id_jenis,
 				'harga_total' => $harga_total,
 			];
+			$dataPelanggan = [
+				'nama_pelanggan' => $nama_pelanggan,
+				'alamat_pelanggan' => $alamat_pelanggan,
+				'nomor_hp' => $nomor_hp,
+			];
 			// insert data ke tabel transaksi
-			$model->_insert($data);
+			$pelangganModel->_insert($dataPelanggan);
+			$model->_insert($dataTransaksi);
 
 			// get data transaksi terakhir untuk konfirmasi
 			$data = [
