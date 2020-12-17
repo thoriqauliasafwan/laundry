@@ -16,7 +16,7 @@ class TransaksiModel extends Model
     protected $allowedFields = [
         'id_transaksi',
         'tanggal',
-        'nomor_hp',
+        'nama_pelanggan',
         'berat',
         'id_paket',
         'id_jenis',

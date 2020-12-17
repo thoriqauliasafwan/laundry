@@ -14,8 +14,8 @@
         <?= $transaksiItem->id_transaksi ?> <br>
         Tanggal <br>
         <?= $transaksiItem->tanggal ?> <br>
-        Nomor Pelanggan <br>
-        <?= $transaksiItem->nomor_hp ?> <br>
+        Nama Pelanggan <br>
+        <?= $transaksiItem->nama_pelanggan ?> <br>
         Berat (Kg) <br>
         <?= $transaksiItem->berat ?> Kg <br>
         Paket <br>
