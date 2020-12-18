@@ -82,12 +82,9 @@ class Home extends BaseController
 			$pelangganModel->_insert($dataPelanggan);
 			$model->_insert($dataTransaksi);
 
-			// get data transaksi terakhir untuk konfirmasi
-			$data = [
-				'transaksi' => $model->_getLast(),
-			];
+			$lastID = $model->_getLast()[0]->id_transaksi;
 			// load successView untuk menampilkan konfirmasi transaksi
-			return view('successView', $data);
+			return redirect()->to('/DataTransaksi/viewById/'.$lastID);
 		}
 	}
 
@@ -127,11 +124,10 @@ class Home extends BaseController
 			$model->_insert($dataTransaksi);
 
 			// get data transaksi terakhir untuk konfirmasi
-			$data = [
-				'transaksi' => $model->_getLast(),
-			];
+			
+			$lastID = $model->_getLast()[0]->id_transaksi;
 			// load successView untuk menampilkan konfirmasi transaksi
-			return view('successView', $data);
+			return redirect()->to('/DataTransaksi/viewById/'.$lastID);
 		}
 	}
 

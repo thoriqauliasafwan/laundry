@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Laporan Keseluruhan</title>
+    <title>Data Transaksi</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
                     <span>Transaksi</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/dataTransaksi">
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Data Transaksi</span></a>
@@ -58,7 +58,7 @@
             </li>
 
             <!-- Laporan -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Laporan</span>
@@ -122,13 +122,13 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">
-                            Laporan Keseluruhan
+                            Data Transaksi
                         </h1>
                         <!-- Breadcrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active">Laporan Keseluruhan</li>
+                                <li class="breadcrumb-item active">Data Transaksi</li>
                             </ol>
                         </nav>
                     </div>
@@ -141,52 +141,56 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <!-- ================= Tabel Transaksi =================== -->
+                                    <thead>
+                                        <tr>
+                                            <td>Tanggal</td>
+                                            <td>Nama Pelanggan</td>
+                                            <td>Harga</td>
+                                            <td>Status Pembayaran</td>
+                                            <td>Status Laundry</td>
+                                            <td>Opsi</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($transaksi as $transaksiItem) : ?>
+                                            <tr>
+                                                <td><?= $transaksiItem->tanggal ?></td>
+                                                <td><?= $transaksiItem->nama_pelanggan ?></td>
+                                                <td>Rp <?= $transaksiItem->harga_total ?></td>
+                                                <td><?= $transaksiItem->status_bayar ?></td>
+                                                <td><?= $transaksiItem->status_laundry ?></td>
+                                                <td><a href="/DataTransaksi/viewById/<?= $transaksiItem->id_transaksi; ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> Lihat</a></td>
+                                            </tr>
+                                        <?php endforeach ?>
 
-                            <!-- ================= Tabel Transaksi =================== -->
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <td>Jumlah Pemasukan</td>
-                                        <td>Jumlah Transaksi</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><?php if ($harga_total_keseluruhan->harga_total != null) {
-                                                echo "Rp " . $harga_total_keseluruhan->harga_total;
-                                            } else {
-                                                echo "belum ada data";
-                                            } ?></td>
-                                        <td><?php if ($total_transaksi_keseluruhan != null) {
-                                                echo $total_transaksi_keseluruhan . " transaksi";
-                                            } else {
-                                                echo "belum ada data";
-                                            } ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
                         </div>
                     </div>
+                    <!-- row -->
                 </div>
+                <!-- /.container-fluid -->
             </div>
-            <!-- row -->
-        </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- End of Main Content -->
+            <!-- End of Main Content -->
 
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; STUNMAP 2020</span>
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; STUNMAP 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

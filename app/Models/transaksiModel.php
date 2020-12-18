@@ -54,13 +54,16 @@ class TransaksiModel extends Model
     public function _getWithPaket($id = null)
     {
         if ($id == null) {
-            $result = $this->select('transaksi.*, paket.nama_paket')
+            $result = $this->select('transaksi.*, paket.nama_paket, jenis_cuci.pilihan_cuci,')
+                ->join('jenis_cuci', 'jenis_cuci.id_jenis = transaksi.id_jenis')
                 ->join('paket', 'paket.id_paket = transaksi.id_paket')
                 ->get()
                 ->getResult();
             return $result;
         } else {
-            $result = $this->select('transaksi.*, paket.nama_paket')
+            $result = $this->select('transaksi.*, paket.nama_paket, jenis_cuci.pilihan_cuci, pelanggan.*')
+                ->join('pelanggan', 'pelanggan.nama_pelanggan = transaksi.nama_pelanggan')
+                ->join('jenis_cuci', 'jenis_cuci.id_jenis = transaksi.id_jenis')
                 ->join('paket', 'paket.id_paket = transaksi.id_paket')
                 ->where('transaksi.id_transaksi', $id)
                 ->get()
@@ -70,31 +73,33 @@ class TransaksiModel extends Model
     }
 
     // method untuk mendapatkan jumlah pemasukan
-    public function _getPemasukan($tanggal = ''){
-        if($tanggal == null){
+    public function _getPemasukan($tanggal = '')
+    {
+        if ($tanggal == null) {
             $result = $this->selectSum('harga_total')
-            ->get()
-            ->getResult();
+                ->get()
+                ->getResult();
             return $result[0];
-        }else{
+        } else {
             $result = $this->where('tanggal', $tanggal)
-            ->selectSum('harga_total')
-            ->get()
-            ->getResult();
+                ->selectSum('harga_total')
+                ->get()
+                ->getResult();
             return $result[0];
         }
     }
 
-    
+
 
     // method untuk mendapatkan jumlah transaksi
-    public function _getTransaksi($tanggal = ''){
-        if($tanggal == null){
+    public function _getTransaksi($tanggal = '')
+    {
+        if ($tanggal == null) {
             $result = $this->countAllResults();
             return $result;
-        }else{
+        } else {
             $result = $this->where('tanggal', $tanggal)
-            ->countAllResults();
+                ->countAllResults();
             return $result;
         }
     }

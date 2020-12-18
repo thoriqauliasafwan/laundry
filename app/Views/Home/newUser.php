@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tambah Data</title>
+    <title>Pelanggan Baru</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,6 +48,18 @@
                     <span>Transaksi</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/dataTransaksi">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>Data Transaksi</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/dataPelanggan">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Data Pelanggan</span></a>
+            </li>
+
             <!-- Laporan -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
@@ -62,9 +74,6 @@
                     </div>
                 </div>
             </li>
-
-
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -78,7 +87,7 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4 mt-4 border-left-primary">
                         <div class="card-header py-3">
-                            <div class="text-center text-gray-800 h3">Laundry Baru</div>
+                            <div class="text-center text-gray-800 h3">Pelanggan Baru</div>
                         </div>
                         <div class="card-body justify-alignment-left">
                             <form class="user" action="Home/insertNew" method="post">

@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Data Balita</title>
+    <title>Laporan Harian</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,6 +45,18 @@
                     <span>Transaksi</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/dataTransaksi">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>Data Transaksi</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/dataPelanggan">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Data Pelanggan</span></a>
+            </li>
+
             <!-- Laporan -->
             <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
@@ -59,9 +71,6 @@
                     </div>
                 </div>
             </li>
-
-
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -119,7 +128,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active">Data Balita</li>
+                                <li class="breadcrumb-item active">Laporan Harian</li>
                             </ol>
                         </nav>
                     </div>

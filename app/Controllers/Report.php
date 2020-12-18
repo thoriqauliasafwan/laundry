@@ -93,6 +93,8 @@ class Report extends BaseController
 		return redirect()->to('/');
 	}
 
+	
+
 	//--------------------------------------------------------------------
 
 }

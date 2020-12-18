@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Laundry Baru</title>
+    <title>Data Pelanggan</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -15,9 +15,6 @@
     <!-- Custom styles for this page -->
     <link href="/bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 
 </head>
@@ -42,7 +39,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-cart-plus"></i>
                     <span>Transaksi</span></a>
@@ -54,7 +51,7 @@
                     <span>Data Transaksi</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/dataPelanggan">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Data Pelanggan</span></a>
@@ -83,48 +80,93 @@
             <!-- Main Content -->
             <div id="content">
 
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600"> $userData->username</span>
+                                <i class="fa fa-user-circle fa-2x"></i>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/Profile">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/Logout" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="card shadow mb-4 mt-4 border-left-primary">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">
+                            Data Pelanggan
+                        </h1>
+                        <!-- Breadcrumb -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active">Data Pelanggan</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <div class="text-center text-gray-800 h3">Laundry Baru</div>
-                        </div>
-                        <div class="card-body justify-alignment-left">
-                            <form class="user" action="/Home/insert" method="post">
-                                <div class="form-group col justify-alignment-left">
-                                    <!-- nama -->
-                                    <div class="col">
-                                        <label for="nama_pelanggan" class="font-weight-bold">Nama Pelanggan</label><br>
-                                        <select class="form-control search" name="nama_pelanggan" id="search" style="width : 20%;"></select>
-                                    </div>
-                                    <!-- umur -->
-                                    <div class="col">
-                                        <label for="berat" class="font-weight-bold">Berat (Kg)</label>
-                                        <input class="form-control" type="number" name="berat" required>
-                                    </div>
-                                    <div class="col">
-                                        <label for="id_paket" class="font-weight-bold">Pilih Jenis Cuci</label>
-                                        <select class="form-control" name="id_jenis" id="id_jenis">
-                                            <?php foreach ($jenisCuci as $jenisCuciItem) : ?>
-                                                <option value="<?= $jenisCuciItem->id_jenis ?>"><?= $jenisCuciItem->pilihan_cuci ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label for="id_paket" class="font-weight-bold">Pilih Paket</label>
-                                        <select class="form-control" name="id_paket" id="id_paket">
-                                            <?php foreach ($paket as $paketItem) : ?>
-                                                <option value="<?= $paketItem->id_paket ?>"><?= $paketItem->nama_paket ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
+                            <div class="row justify-content-between">
+                                <div class="col">
                                 </div>
-                                <div class="col justify-content-center">
-                                    <div class="col">
-                                        <input class="mt-3 btn btn-success btn-user btn-block" type="submit" value="OK">
-                                        <a class="mt-4 btn btn-primary btn-user btn-block" href="/New">Pelanggan Baru</a>
-                                    </div>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <!-- ================= Tabel Transaksi =================== -->
+                                    <thead>
+                                        <tr>
+                                            <td>Nama Pelanggan</td>
+                                            <td>Alamat Pelanggan</td>
+                                            <td>Nomor HP</td>
+                                            <td>Opsi</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($pelanggan as $pelangganItem) : ?>
+                                            <tr>
+                                                <td><?= $pelangganItem->nama_pelanggan ?></td>
+                                                <td><?= $pelangganItem->alamat_pelanggan ?></td>
+                                                <td><?= $pelangganItem->nomor_hp ?></td>
+                                                <td><a href="/DataPelanggan/delete/<?= $pelangganItem->nama_pelanggan; ?>" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> Hapus</a></td>
+                                            </tr>
+                                        <?php endforeach ?>
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
                         </div>
                     </div>
                     <!-- row -->
@@ -137,7 +179,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; STUNMAP 2020</span>
                     </div>
                 </div>
             </footer>
@@ -159,45 +201,21 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ingin keluar?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Klik "Logout" jika anda ingin keluar</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <a class="btn btn-primary" href="/Logout">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        $('.search').select2({
-            placeholder: 'Cari Nama',
-            ajax: {
-                url: '/Search-Name',
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data) {
-                    var results = [];
-
-                    $.each(data, function(index, item) {
-                        results.push({
-                            id: item.nama_pelanggan,
-                            text: item.nama_pelanggan
-                        });
-                    });
-
-                    return {
-                        results: results
-                    };
-                },
-                cache: true
-            }
-        });
-    </script>
+    <!-- Function Function -->
 
 
     <!-- Bootstrap core JavaScript-->
