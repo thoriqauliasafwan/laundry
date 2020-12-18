@@ -28,7 +28,22 @@ class Report extends BaseController
 			'tanggal' => $hariIni,
 		];
 		// print_r($data['total_transaksi']);
-		return view('reportView', $data);
+		return view('Report/harian', $data);
+	}
+
+	public function reportKeseluruhan()
+	{
+		// inisialisasi model
+		$model = new PaketModel;
+		$transaksiModel = new TransaksiModel;
+		// mengirim data ke View
+		$data = [
+			'paket' => $model->_get(),
+			'harga_total_keseluruhan' => $transaksiModel->_getPemasukan(),
+			'total_transaksi_keseluruhan' => $transaksiModel->_getTransaksi(),
+		];
+		// print_r($data['total_transaksi']);
+		return view('Report/keseluruhan', $data);
 	}
 
 	// method insert data transaksi

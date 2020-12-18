@@ -35,6 +35,8 @@ $routes->get('/New', 'Home::newUser');
 $routes->get('/Search-Name', 'Home::searchName');
 $routes->get('/Insert-New', 'Home::insertNew');
 $routes->get('/Insert', 'Home::insert');
+$routes->get('/Report/Harian', 'Report::index');
+$routes->get('/Report/Keseluruhan', 'Report::reportKeseluruhan');
 
 /**
  * --------------------------------------------------------------------
