@@ -33,9 +33,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-12">
-                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-tshirt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">LaundryKu</div>
+                <div class="sidebar-brand-text mx-3">Laundry.Ku</div>
             </a>
 
             <!-- Divider -->
@@ -63,7 +63,7 @@
             <!-- Laporan -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
-                    <i class="fas fa-fw fa-list"></i>
+                    <i class="fas fa-fw fa-calendar"></i>
                     <span>Laporan</span>
                 </a>
                 <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="col justify-content-center">
                                     <div class="col">
-                                        <input class="mt-3 btn btn-success btn-user btn-block" type="submit" value="OK">
+                                        <input class="mt-3 btn btn-success btn-user btn-block font-weight-bold" type="submit" value="OK">
                                     </div>
                             </form>
                         </div>

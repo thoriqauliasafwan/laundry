@@ -30,9 +30,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-12">
-                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-tshirt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">LaundryKu</div>
+                <div class="sidebar-brand-text mx-3">Laundry.Ku</div>
             </a>
 
             <!-- Divider -->
@@ -160,7 +160,7 @@
                                                 <td><?= $transaksiItem->tanggal ?></td>
                                                 <td><?= $transaksiItem->nama_pelanggan ?></td>
                                                 <td>Rp <?= $transaksiItem->harga_total ?></td>
-                                                <td><?= $transaksiItem->status_bayar ?></td>
+                                                <td><?= ucfirst($transaksiItem->status_bayar); ?></td>
                                                 <td><?= $transaksiItem->status_laundry ?></td>
                                                 <td><a href="/DataTransaksi/viewById/<?= $transaksiItem->id_transaksi; ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> Lihat</a></td>
                                             </tr>

@@ -34,9 +34,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-12">
-                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-tshirt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">LaundryKu</div>
+                <div class="sidebar-brand-text mx-3">Laundry.Ku</div>
             </a>
 
             <!-- Divider -->
@@ -150,10 +150,10 @@
                                     </div>
                                     <div class="col">
                                         <div class="row justify-content-end">
-                                            <?php if($transaksiItem->status_bayar != 'lunas'){ ?>
+                                            <?php if($transaksiItem->status_bayar != 'Lunas'){ ?>
                                                 <a href="/DataTransaksi/updateStatus/1/<?= $transaksiItem->id_transaksi ?>?" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-check fa-sm text-white-50"></i> Pelanggan Sudah Bayar</a>
                                             <?php }?>
-                                            <?php if($transaksiItem->status_laundry != 'selesai'){ ?>
+                                            <?php if($transaksiItem->status_laundry != 'Selesai'){ ?>
                                                 <a href="/DataTransaksi/updateStatus/2/<?= $transaksiItem->id_transaksi ?>?" class="ml-2 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-check fa-sm text-white-50"></i> Laundry Selesai</a>
                                             <?php }?>
                                             <a href="/DataTransaksi/delete/<?= $transaksiItem->id_transaksi ?>" class="ml-2 d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> Hapus Data</a>

@@ -44,10 +44,10 @@ class DataTransaksi extends BaseController
 		// jika opsi = 1, maka ubah status bayar ke lunas
 		// jika opsi = 2, maka ubah status laundry ke selesai
 		if($opsi == 1){
-			$data = ['status_bayar' => 'lunas'];
+			$data = ['status_bayar' => 'Lunas'];
 			$model->_update($id_transaksi, $data);
 		}elseif($opsi == 2){
-			$data = ['status_laundry' => 'selesai'];
+			$data = ['status_laundry' => 'Selesai'];
 			$model->_update($id_transaksi, $data);
 		}
 		return redirect()->to('/DataTransaksi/viewById/'.$id_transaksi);

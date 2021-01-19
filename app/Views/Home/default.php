@@ -18,7 +18,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+    
 
 </head>
 
@@ -33,9 +33,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-12">
-                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-tshirt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">LaundryKu</div>
+                <div class="sidebar-brand-text mx-3">Laundry.Ku</div>
             </a>
 
             <!-- Divider -->
@@ -121,8 +121,8 @@
                                 </div>
                                 <div class="col justify-content-center">
                                     <div class="col">
-                                        <input class="mt-3 btn btn-success btn-user btn-block" type="submit" value="OK">
-                                        <a class="mt-4 btn btn-primary btn-user btn-block" href="/New">Pelanggan Baru</a>
+                                        <input class="mt-3 btn btn-success btn-user btn-block font-weight-bold" type="submit" value="OK">
+                                        <a class="mt-4 btn btn-primary btn-user btn-block font-weight-bold" href="/New">Pelanggan Baru</a>
                                     </div>
                             </form>
                         </div>

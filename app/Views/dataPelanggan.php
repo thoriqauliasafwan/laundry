@@ -30,9 +30,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-12">
-                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-tshirt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">LaundryKu</div>
+                <div class="sidebar-brand-text mx-3">Laundry.Ku</div>
             </a>
 
             <!-- Divider -->
