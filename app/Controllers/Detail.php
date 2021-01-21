@@ -14,6 +14,7 @@ class Detail extends BaseController
 		// mengirim data ke View
 		$data = [
 			'transaksi' => $model->_getWithPaket($id_transaksi),
+			'userData' => $this->userData
 		];
 		return view('detailView', $data);
 	}

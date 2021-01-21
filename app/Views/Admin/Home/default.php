@@ -18,7 +18,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    
+
 
 </head>
 
@@ -44,8 +44,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/">
-                    <i class="fas fa-fw fa-cart-plus"></i>
-                    <span>Transaksi</span></a>
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span></a>
             </li>
 
             <li class="nav-item">
@@ -62,11 +62,11 @@
 
             <!-- Laporan -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-laporan" aria-expanded="true" aria-controls="#collapse-laporan">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Laporan</span>
                 </a>
-                <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapse-laporan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Laporan:</h6>
                         <a class="collapse-item" href="/Report/Harian">Laporan Harian</a>
@@ -74,6 +74,36 @@
                     </div>
                 </div>
             </li>
+
+            <!-- Pengguna -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Data Pengguna</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Jenis Pengguna</h6>
+                        <a class="collapse-item" href="/Pengguna/0">Admin</a>
+                        <a class="collapse-item" href="/Pengguna/1">Karyawan</a>
+                    </div>
+                </div>
+            </li>
+
+        <!-- Profil -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
+                <i class="fas fa-fw fa-user"></i>
+                <span><?= $userData->nama ?></span>
+            </a>
+            <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Aksi:</h6>
+                    <a class="collapse-item" href="/Login/Logout">Logout</a>
+                </div>
+            </div>
+        </li>
         </ul>
         <!-- End of Sidebar -->
 
@@ -85,48 +115,17 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="card shadow mb-4 mt-4 border-left-primary">
-                        <div class="card-header py-3">
-                            <div class="text-center text-gray-800 h3">Laundry Baru</div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-auto text-center">
+                            <div class="text-gray-600 font-weight-bold mt-5">SELAMAT DATANG</div>
+                            <i class="fa fa-user fa-10x mt-5"></i>
+                            <div class="text-gray-600 font-weight-bold mt-2">LAUNDRY.KU ADMIN</div>
                         </div>
-                        <div class="card-body justify-alignment-left">
-                            <form class="user" action="/Home/insert" method="post">
-                                <div class="form-group col justify-alignment-left">
-                                    <!-- nama -->
-                                    <div class="col">
-                                        <label for="nama_pelanggan" class="font-weight-bold">Nama Pelanggan</label><br>
-                                        <select class="form-control search" name="nama_pelanggan" id="search" style="width : 20%;"></select>
-                                    </div>
-                                    <!-- umur -->
-                                    <div class="col">
-                                        <label for="berat" class="font-weight-bold">Berat (Kg)</label>
-                                        <input class="form-control" type="number" name="berat" required>
-                                    </div>
-                                    <div class="col">
-                                        <label for="id_paket" class="font-weight-bold">Pilih Jenis Cuci</label>
-                                        <select class="form-control" name="id_jenis" id="id_jenis">
-                                            <?php foreach ($jenisCuci as $jenisCuciItem) : ?>
-                                                <option value="<?= $jenisCuciItem->id_jenis ?>"><?= $jenisCuciItem->pilihan_cuci ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label for="id_paket" class="font-weight-bold">Pilih Paket</label>
-                                        <select class="form-control" name="id_paket" id="id_paket">
-                                            <?php foreach ($paket as $paketItem) : ?>
-                                                <option value="<?= $paketItem->id_paket ?>"><?= $paketItem->nama_paket ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col justify-content-center">
-                                    <div class="col">
-                                        <input class="mt-3 btn btn-success btn-user btn-block font-weight-bold" type="submit" value="OK">
-                                        <a class="mt-4 btn btn-primary btn-user btn-block font-weight-bold" href="/New">Pelanggan Baru</a>
-                                    </div>
-                            </form>
-                        </div>
+
                     </div>
+
+
                     <!-- row -->
                 </div>
                 <!-- /.container-fluid -->

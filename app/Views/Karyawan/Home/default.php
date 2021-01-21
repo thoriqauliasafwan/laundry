@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Pelanggan Baru</title>
+    <title>Laundry Baru</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,7 +18,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+    
 
 </head>
 
@@ -59,18 +59,16 @@
                     <i class="fas fa-fw fa-users"></i>
                     <span>Data Pelanggan</span></a>
             </li>
-
-            <!-- Laporan -->
+            <!-- Profil -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Laporan</span>
+                    <i class="fas fa-fw fa-user"></i>
+                    <span><?= $userData->nama ?></span>
                 </a>
                 <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Laporan:</h6>
-                        <a class="collapse-item" href="/Report/Harian">Laporan Harian</a>
-                        <a class="collapse-item" href="/Report/Keseluruhan">Laporan Keseluruhan</a>
+                        <h6 class="collapse-header">Aksi:</h6>
+                        <a class="collapse-item" href="/Login/Logout">Logout</a>
                     </div>
                 </div>
             </li>
@@ -87,23 +85,15 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4 mt-4 border-left-primary">
                         <div class="card-header py-3">
-                            <div class="text-center text-gray-800 h3">Pelanggan Baru</div>
+                            <div class="text-center text-gray-800 h3">Laundry Baru</div>
                         </div>
                         <div class="card-body justify-alignment-left">
-                            <form class="user" action="Home/insertNew" method="post">
+                            <form class="user" action="/Home/insert" method="post">
                                 <div class="form-group col justify-alignment-left">
                                     <!-- nama -->
                                     <div class="col">
-                                        <label for="nama_pelanggan" class="font-weight-bold">Nama Pelanggan</label>
-                                        <input type="text" class="form-control search" name="nama_pelanggan" id="nama_pelanggan"></input>
-                                    </div>
-                                    <div class="col">
-                                        <label for="alamat_pelanggan" class="font-weight-bold">Alamat Pelanggan</label>
-                                        <input type="text" class="form-control search" name="alamat_pelanggan" id="alamat_pelanggan"></input>
-                                    </div>
-                                    <div class="col">
-                                        <label for="nomor_hp" class="font-weight-bold">Nomor HP</label>
-                                        <input type="text" class="form-control search" name="nomor_hp" id="nomor_hp"></input>
+                                        <label for="nama_pelanggan" class="font-weight-bold">Nama Pelanggan</label><br>
+                                        <select class="form-control search" name="nama_pelanggan" id="search" style="width : 20%;"></select>
                                     </div>
                                     <!-- umur -->
                                     <div class="col">
@@ -130,6 +120,7 @@
                                 <div class="col justify-content-center">
                                     <div class="col">
                                         <input class="mt-3 btn btn-success btn-user btn-block font-weight-bold" type="submit" value="OK">
+                                        <a class="mt-4 btn btn-primary btn-user btn-block font-weight-bold" href="/New">Pelanggan Baru</a>
                                     </div>
                             </form>
                         </div>
@@ -180,6 +171,31 @@
         </div>
     </div>
 
+    <script>
+        $('.search').select2({
+            placeholder: 'Cari Nama',
+            ajax: {
+                url: '/Search-Name',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    var results = [];
+
+                    $.each(data, function(index, item) {
+                        results.push({
+                            id: item.nama_pelanggan,
+                            text: item.nama_pelanggan
+                        });
+                    });
+
+                    return {
+                        results: results
+                    };
+                },
+                cache: true
+            }
+        });
+    </script>
 
 
     <!-- Bootstrap core JavaScript-->

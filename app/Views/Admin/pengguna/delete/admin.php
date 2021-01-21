@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Data Pelanggan</title>
+    <title>Hapus Data Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -14,6 +14,7 @@
 
     <!-- Custom styles for this page -->
     <link href="/bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 
 
 
@@ -30,9 +31,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-12">
-                    <i class="fas fa-tshirt"></i>
+                    <i class="fas fa-user-md"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Laundry.Ku</div>
+                <div class="sidebar-brand-text mx-3">STUNMAP</div>
             </a>
 
             <!-- Divider -->
@@ -41,36 +42,54 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="/">
-                    <i class="fas fa-fw fa-cart-plus"></i>
-                    <span>Transaksi</span></a>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Heading -->
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Olah Data
+            </div>
+
+            <!-- Puskesmas -->
             <li class="nav-item">
-                <a class="nav-link" href="/dataTransaksi">
-                    <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>Data Transaksi</span></a>
+                <a class="nav-link" href="/Puskesmas">
+                    <i class="fas fa-fw fa-hospital"></i>
+                    <span>Data Puskesmas</span></a>
             </li>
+
+            <!-- Posyandu -->
+
+            <li class="nav-item">
+                <a class="nav-link" href="/Posyandu">
+                    <i class="fas fa-fw fa-medkit"></i>
+                    <span>Data Posyandu</span></a>
+            </li>
+
+            <!-- Pengguna -->
 
             <li class="nav-item active">
-                <a class="nav-link" href="/dataPelanggan">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Data Pelanggan</span></a>
-            </li>
-
-            <!-- Laporan -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Laporan</span>
+                    <span>Data Pengguna</span>
                 </a>
-                <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Laporan:</h6>
-                        <a class="collapse-item" href="/Report/Harian">Laporan Harian</a>
-                        <a class="collapse-item" href="/Report/Keseluruhan">Laporan Keseluruhan</a>
+                        <h6 class="collapse-header">Jenis Pengguna</h6>
+                        <a class="collapse-item" href="/Pengguna/0">Admin</a>
+                        <a class="collapse-item" href="/Pengguna/1">Petugas Dinas Kesehatan</a>
+                        <a class="collapse-item" href="/Pengguna/2">Bidan Puskesmas</a>
+                        <a class="collapse-item" href="/Pengguna/3">Petugas Poli Gizi</a>
                     </div>
                 </div>
             </li>
+
+
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -94,7 +113,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600"> $userData->username</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600"><?= $userData->username ?></span>
                                 <i class="fa fa-user-circle fa-2x"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -104,7 +123,7 @@
                                     Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/Logout" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -121,51 +140,49 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
-                            Data Pelanggan
-                        </h1>
+                        <h1 class="h3 mb-0 text-gray-800">Pilih data yang akan dihapus</h1>
                         <!-- Breadcrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active">Data Pelanggan</li>
+                                <li class="breadcrumb-item"><a href="/Pengguna/0">Data Admin</a></li>
+                                <li class="breadcrumb-item active">Hapus Data</li>
                             </ol>
                         </nav>
                     </div>
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <div class="row justify-content-between">
-                                <div class="col">
-                                </div>
+                            <div class="row justify-content-end">
+                                <a href="/Puskesmas" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Batal</a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="ml-2 d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#confirmationModal">
+                                    <i class="fas fa-trash fa-sm text-white-50"></i> Hapus
+                                </button>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <!-- ================= Tabel Transaksi =================== -->
                                     <thead>
                                         <tr>
-                                            <td>Nama Pelanggan</td>
-                                            <td>Alamat Pelanggan</td>
-                                            <td>Nomor HP</td>
-                                            <td>Opsi</td>
+                                            <th>Pilih</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Nomor HP</th>
+                                            <th>Username</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($pelanggan as $pelangganItem) : ?>
+                                        <?php foreach ($pengguna as $i => $penggunaItem) : ?>
                                             <tr>
-                                                <td><?= $pelangganItem->nama_pelanggan ?></td>
-                                                <td><?= $pelangganItem->alamat_pelanggan ?></td>
-                                                <td><?= $pelangganItem->nomor_hp ?></td>
-                                                <td><a href="/DataPelanggan/delete/<?= $pelangganItem->nama_pelanggan; ?>" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> Hapus</a></td>
+                                                <td><input id="<?= $penggunaItem->nomor_hp; ?>" type="checkbox" onclick="deleteData('<?= $penggunaItem->nomor_hp; ?>')"></td>
+                                                <td><?= $penggunaItem->nama; ?></td>
+                                                <td><?= $penggunaItem->nomor_hp; ?></td>
+                                                <td><?= $penggunaItem->username; ?></td>
                                             </tr>
                                         <?php endforeach ?>
-
                                     </tbody>
                                 </table>
-
-
                             </div>
                         </div>
                     </div>
@@ -215,8 +232,39 @@
         </div>
     </div>
 
-    <!-- Function Function -->
+    <!-- Confirmation MODAL -->
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    Apakah anda yakin menghapus data?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <form action="/Puskesmas/Delete/Selected" method="post">
+                        <input id="deleteID" name="deleteID" type="hidden">
+                        <button class="btn btn-danger" type="submit" id="deleteButton">
+                            Hapus
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Function Function -->
+    <script src="/scriptKu.js"></script>
+    <!-- ================= -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>

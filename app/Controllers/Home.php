@@ -15,12 +15,19 @@ class Home extends BaseController
 		$jenisCuciModel = new JenisCuciModel;
 		$transaksiModel = new TransaksiModel;
 		// mengirim data ke View
+		
 		$data = [
 			'paket' => $paketModel->_get(),
 			'jenisCuci' => $jenisCuciModel->_get(),
 			'transaksi' => $transaksiModel->_getWithPaket(),
+			'userData' => $this->userData
 		];
-		return view('Home/default', $data);
+		$level = $this->userData->level;
+		if($level == 0){
+			return view('Admin/Home/default', $data);
+		}else if($level == 1){
+			return view('Karyawan/Home/default', $data);
+		}
 	}
 
 	// method pelanggan baru
@@ -35,8 +42,9 @@ class Home extends BaseController
 			'paket' => $paketModel->_get(),
 			'jenisCuci' => $jenisCuciModel->_get(),
 			'transaksi' => $transaksiModel->_getWithPaket(),
+			'userData' => $this->userData
 		];
-		return view('Home/newUser', $data);
+		return view('Karyawan/Home/newUser', $data);
 	}
 
 	// method insert data transaksi
@@ -97,7 +105,6 @@ class Home extends BaseController
 			$model = new TransaksiModel;
 			$paketModel = new PaketModel;
 			$jenisCuciModel = new JenisCuciModel;
-			$pelangganModel = new PelangganModel;
 
 			// mengambil data dari form
 			$nama_pelanggan = $this->request->getPost('nama_pelanggan');
@@ -136,7 +143,6 @@ class Home extends BaseController
 		$pelangganModel = new PelangganModel;
 		$name = $this->request->getVar('q');
 		$data = $pelangganModel->_search($name);
-
 		echo json_encode($data);
 	}
 

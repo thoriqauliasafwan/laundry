@@ -13,7 +13,7 @@
         ID Transaksi <br>
         <?= $transaksiItem->id_transaksi ?> <br>
         Tanggal <br>
-        <?= $transaksiItem->tanggal ?> <br>
+        <?= $transaksiItem->tanggalMasuk ?> <br>
         Nama Pelanggan <br>
         <?= $transaksiItem->nama_pelanggan ?> <br>
         Berat (Kg) <br>

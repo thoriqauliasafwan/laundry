@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Laporan Keseluruhan</title>
+    <title>Data Transaksi</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@
                     <span>Transaksi</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/dataTransaksi">
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Data Transaksi</span></a>
@@ -58,16 +58,31 @@
             </li>
 
             <!-- Laporan -->
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-laporan" aria-expanded="true" aria-controls="#collapse-laporan">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Laporan</span>
                 </a>
-                <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapse-laporan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Laporan:</h6>
                         <a class="collapse-item" href="/Report/Harian">Laporan Harian</a>
                         <a class="collapse-item" href="/Report/Keseluruhan">Laporan Keseluruhan</a>
+                    </div>
+                </div>
+            </li>
+
+            
+            <!-- Profil -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span><?= $userData->nama ?></span>
+                </a>
+                <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Aksi:</h6>
+                        <a class="collapse-item" href="/Login/Logout">Logout</a>
                     </div>
                 </div>
             </li>
@@ -78,112 +93,68 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
+            <div class="container mt-4 mb-4">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">
+                        Data Transaksi
+                    </h1>
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Data Transaksi</li>
+                        </ol>
+                    </nav>
+                </div>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600"> $userData->username</span>
-                                <i class="fa fa-user-circle fa-2x"></i>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/Profile">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/Logout" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
-                            Laporan Keseluruhan
-                        </h1>
-                        <!-- Breadcrumb -->
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active">Laporan Keseluruhan</li>
-                            </ol>
-                        </nav>
-                    </div>
-
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <div class="row justify-content-between">
-                                <div class="col">
-                                </div>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <div class="row justify-content-between">
+                            <div class="col">
                             </div>
                         </div>
-                        <div class="card-body">
-
-                            <!-- ================= Tabel Transaksi =================== -->
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <!-- ================= Tabel Transaksi =================== -->
                                 <thead>
                                     <tr>
-                                        <td>Jumlah Pemasukan</td>
-                                        <td>Jumlah Transaksi</td>
+                                        <td>Tanggal Masuk</td>
+                                        <td>Nama Pelanggan</td>
+                                        <td>Harga</td>
+                                        <td>Status Pembayaran</td>
+                                        <td>Status Laundry</td>
+                                        <td>Opsi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><?php if ($harga_total_keseluruhan->harga_total != null) {
-                                                echo "Rp " . $harga_total_keseluruhan->harga_total;
-                                            } else {
-                                                echo "belum ada data";
-                                            } ?></td>
-                                        <td><?php if ($total_transaksi_keseluruhan != null) {
-                                                echo $total_transaksi_keseluruhan . " transaksi";
-                                            } else {
-                                                echo "belum ada data";
-                                            } ?></td>
-                                    </tr>
+                                    <?php foreach ($transaksi as $transaksiItem) : ?>
+                                        <tr>
+                                            <td><?= $transaksiItem->tanggal_masuk ?></td>
+                                            <td><?= $transaksiItem->nama_pelanggan ?></td>
+                                            <td>Rp <?= $transaksiItem->harga_total ?></td>
+                                            <td><?= ucfirst($transaksiItem->status_bayar); ?></td>
+                                            <td><?= $transaksiItem->status_laundry ?></td>
+                                            <td><a href="/DataTransaksi/viewById/<?= $transaksiItem->id_transaksi; ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> Lihat</a></td>
+                                        </tr>
+                                    <?php endforeach ?>
+
                                 </tbody>
                             </table>
+
+
                         </div>
                     </div>
                 </div>
+                <!-- row -->
             </div>
-            <!-- row -->
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; STUNMAP 2020</span>
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
+        <!-- End of Main Content -->
 
     </div>
     <!-- End of Content Wrapper -->

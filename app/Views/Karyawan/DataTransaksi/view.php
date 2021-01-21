@@ -60,18 +60,17 @@
                     <i class="fas fa-fw fa-users"></i>
                     <span>Data Pelanggan</span></a>
             </li>
-
-            <!-- Laporan -->
+            
+            <!-- Profil -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Laporan</span>
+                    <i class="fas fa-fw fa-user"></i>
+                    <span><?= $userData->nama ?></span>
                 </a>
                 <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Laporan:</h6>
-                        <a class="collapse-item" href="/Report/Harian">Laporan Harian</a>
-                        <a class="collapse-item" href="/Report/Keseluruhan">Laporan Keseluruhan</a>
+                        <h6 class="collapse-header">Aksi:</h6>
+                        <a class="collapse-item" href="/Login/Logout">Logout</a>
                     </div>
                 </div>
             </li>
@@ -84,52 +83,8 @@
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <!-- Topbar Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <div class="topbar-divider d-none d-sm-block"></div>
-
-                            <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600">$userData->username</span>
-                                    <i class="fa fa-user-circle fa-2x"></i>
-                                </a>
-                                <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="/Profile">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Logout" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a>
-                                </div>
-                            </li>
-
-                        </ul>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid mt-4 mb-4">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-end mb-4">
                         <!-- Breadcrumb -->
@@ -150,12 +105,12 @@
                                     </div>
                                     <div class="col">
                                         <div class="row justify-content-end">
-                                            <?php if($transaksiItem->status_bayar != 'Lunas'){ ?>
+                                            <?php if ($transaksiItem->status_bayar != 'Lunas') { ?>
                                                 <a href="/DataTransaksi/updateStatus/1/<?= $transaksiItem->id_transaksi ?>?" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-check fa-sm text-white-50"></i> Pelanggan Sudah Bayar</a>
-                                            <?php }?>
-                                            <?php if($transaksiItem->status_laundry != 'Selesai'){ ?>
+                                            <?php } ?>
+                                            <?php if ($transaksiItem->status_laundry != 'Selesai') { ?>
                                                 <a href="/DataTransaksi/updateStatus/2/<?= $transaksiItem->id_transaksi ?>?" class="ml-2 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-check fa-sm text-white-50"></i> Laundry Selesai</a>
-                                            <?php }?>
+                                            <?php } ?>
                                             <a href="/DataTransaksi/delete/<?= $transaksiItem->id_transaksi ?>" class="ml-2 d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> Hapus Data</a>
                                         </div>
                                     </div>
@@ -167,8 +122,8 @@
                                     <div class="col">
                                         <div class="text-gray-800 font-weight-bold mt-2 ">ID Transaksi</div>
                                         <div class="text-gray-800"><?= $transaksiItem->id_transaksi ?></div>
-                                        <div class="text-gray-800 font-weight-bold mt-2 ">Tanggal</div>
-                                        <div class="text-gray-800"><?= $transaksiItem->tanggal ?></div>
+                                        <div class="text-gray-800 font-weight-bold mt-2 ">Tanggal Masuk</div>
+                                        <div class="text-gray-800"><?= $transaksiItem->tanggal_masuk ?></div>
                                         <div class="text-gray-800 font-weight-bold mt-2 ">Nama Pelanggan</div>
                                         <div class="text-gray-800"><?= $transaksiItem->nama_pelanggan ?></div>
                                         <div class="text-gray-800 font-weight-bold mt-2 ">Alamat Pelanggan</div>

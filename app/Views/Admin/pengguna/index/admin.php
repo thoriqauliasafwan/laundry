@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Laporan Harian</title>
+    <title>Data Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,9 +30,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-12">
-                    <i class="fas fa-tshirt"></i>
+                    <i class="fas fa-user-md"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Laundry.Ku</div>
+                <div class="sidebar-brand-text mx-3">STUNMAP</div>
             </a>
 
             <!-- Divider -->
@@ -41,36 +41,54 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="/">
-                    <i class="fas fa-fw fa-cart-plus"></i>
-                    <span>Transaksi</span></a>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Heading -->
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Olah Data
+            </div>
+
+            <!-- Puskesmas -->
+            <li class="nav-item">
+                <a class="nav-link" href="/Puskesmas">
+                    <i class="fas fa-fw fa-hospital"></i>
+                    <span>Data Puskesmas</span></a>
+            </li>
+
+            <!-- Posyandu -->
 
             <li class="nav-item">
-                <a class="nav-link" href="/dataTransaksi">
-                    <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>Data Transaksi</span></a>
+                <a class="nav-link" href="/Posyandu">
+                    <i class="fas fa-fw fa-medkit"></i>
+                    <span>Data Posyandu</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/dataPelanggan">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Data Pelanggan</span></a>
-            </li>
+            <!-- Pengguna -->
 
-            <!-- Laporan -->
             <li class="nav-item active">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Laporan</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Data Pengguna</span>
                 </a>
-                <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Laporan:</h6>
-                        <a class="collapse-item" href="/Report/Harian">Laporan Harian</a>
-                        <a class="collapse-item" href="/Report/Keseluruhan">Laporan Keseluruhan</a>
+                        <h6 class="collapse-header">Jenis Pengguna</h6>
+                        <a class="collapse-item" href="/Pengguna/0">Admin</a>
+                        <a class="collapse-item" href="/Pengguna/1">Petugas Dinas Kesehatan</a>
+                        <a class="collapse-item" href="/Pengguna/2">Bidan Puskesmas</a>
+                        <a class="collapse-item" href="/Pengguna/3">Petugas Poli Gizi</a>
                     </div>
                 </div>
             </li>
+
+
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -94,7 +112,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600"> $userData->username</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600"><?= $userData->username ?></span>
                                 <i class="fa fa-user-circle fa-2x"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -104,7 +122,7 @@
                                     Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/Logout" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -121,14 +139,12 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
-                            Laporan Harian
-                        </h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Admin</h1>
                         <!-- Breadcrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active">Laporan Harian</li>
+                                <li class="breadcrumb-item active">Data Admin</li>
                             </ol>
                         </nav>
                     </div>
@@ -136,47 +152,39 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="row justify-content-between">
+                                <div class="col-md-5 font-weight-bold text-success">
+                                    <?= $alert; ?>
+                                </div>
                                 <div class="col">
+                                    <div class="row justify-content-end">
+                                        <a href="/Pengguna/New/0" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
+                                        <a href="/Pengguna/Delete/0" class="ml-2 d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> Hapus Data</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <!-- ================= FORM TRANSAKSI ================== -->
-                            <form action="/Report" method="post">
-                                <label for="nama_pelanggan">Pilih Tanggal</label>
-                                <input type="date" name="tanggal" required value="<?= $tanggal ?>">
-                                <input type="submit" value="OK">
-                            </form>
-                            <br>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <!-- ================= Tabel Transaksi =================== -->
-                                        <thead>
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Lengkap</th>
+                                            <th>Nomor HP</th>
+                                            <th>Username</th>
+                                            <th>Opsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($pengguna as $i => $penggunaItem) : ?>
                                             <tr>
-                                                <td>Tanggal</td>
-                                                <td>Jumlah Pemasukan</td>
-                                                <td>Jumlah Transaksi</td>
+                                                <td><?= $penggunaItem->nama; ?></td>
+                                                <td><?= $penggunaItem->nomor_hp; ?></td>
+                                                <td><?= $penggunaItem->username; ?></td>
+                                                <td><a href="/Pengguna/0/<?= $penggunaItem->nomor_hp ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> Lihat</a></td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><?= $tanggal ?></td>
-                                                <td><?php if ($harga_total->harga_total != null) {
-                                                        echo "Rp " . $harga_total->harga_total;
-                                                    } else {
-                                                        echo "belum ada data";
-                                                    } ?></td>
-                                                <td><?php if ($total_transaksi != null) {
-                                                        echo $total_transaksi . " transaksi";
-                                                    } else {
-                                                        echo "belum ada data";
-                                                    } ?></td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-
-                                    
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -225,8 +233,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Function Function -->
 
 
     <!-- Bootstrap core JavaScript-->

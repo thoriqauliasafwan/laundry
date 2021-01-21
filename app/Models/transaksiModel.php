@@ -15,7 +15,8 @@ class TransaksiModel extends Model
     // fields yang dapat diubah
     protected $allowedFields = [
         'id_transaksi',
-        'tanggal',
+        'tanggal_masuk',
+        'tanggal_selesai',
         'nama_pelanggan',
         'berat',
         'id_paket',
@@ -73,15 +74,15 @@ class TransaksiModel extends Model
     }
 
     // method untuk mendapatkan jumlah pemasukan
-    public function _getPemasukan($tanggal = '')
+    public function _getPemasukan($tanggal_masuk = '')
     {
-        if ($tanggal == null) {
+        if ($tanggal_masuk == null) {
             $result = $this->selectSum('harga_total')
                 ->get()
                 ->getResult();
             return $result[0];
         } else {
-            $result = $this->where('tanggal', $tanggal)
+            $result = $this->where('tanggal_masuk', $tanggal_masuk)
                 ->selectSum('harga_total')
                 ->get()
                 ->getResult();
@@ -92,13 +93,13 @@ class TransaksiModel extends Model
 
 
     // method untuk mendapatkan jumlah transaksi
-    public function _getTransaksi($tanggal = '')
+    public function _getTransaksi($tanggal_masuk = '')
     {
-        if ($tanggal == null) {
+        if ($tanggal_masuk == null) {
             $result = $this->countAllResults();
             return $result;
         } else {
-            $result = $this->where('tanggal', $tanggal)
+            $result = $this->where('tanggal_masuk', $tanggal_masuk)
                 ->countAllResults();
             return $result;
         }

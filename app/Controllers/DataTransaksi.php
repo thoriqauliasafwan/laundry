@@ -14,9 +14,15 @@ class DataTransaksi extends BaseController
 		// mengirim data ke View
 		$data = [
 			'transaksi' => $transaksiModel->_getWithPaket(),
+			'userData' => $this->userData
 		];
 		// print_r($data['transaksi']);
-		return view('DataTransaksi/index', $data);
+		$level = $this->userData->level;
+		if($level == 0){
+			return view('Admin/DataTransaksi/index', $data);
+		}else if($level == 1){
+			return view('Karyawan/DataTransaksi/index', $data);
+		}
 	}
 
 	// method view by id transaksi
@@ -29,9 +35,14 @@ class DataTransaksi extends BaseController
 
 		$data = [
 			'transaksi' => $transaksiModel->_getWithPaket($id_transaksi),
+			'userData' => $this->userData
 		];
-
-		return view('DataTransaksi/view', $data);
+		$level = $this->userData->level;
+		if($level == 0){
+			return view('Admin/DataTransaksi/view', $data);
+		}else if($level == 1){
+			return view('Karyawan/DataTransaksi/view', $data);
+		}
 	}
 
 	// method update
