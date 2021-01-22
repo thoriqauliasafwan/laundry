@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 
 class AdminModel extends Model {
     protected $table = 'admin';
-    protected $primary_key = 'nomor_hp';
+    protected $primaryKey = 'username';
     protected $returnType = 'object';
     protected $allowedFields = [
         'nomor_hp',
@@ -31,7 +31,7 @@ class AdminModel extends Model {
         $this->update($id, $data);
     }
 
-    public function _delete($id){
-        $this->delete($id);
+    public function _delete($username){
+        $this->delete($username);
     }
 }

@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 
 class UserModel extends Model {
     protected $table = 'user';
-    protected $primary_key = 'username';
+    protected $primaryKey = 'username';
     protected $returnType = 'object';
     protected $allowedFields = [
         'username',
@@ -14,15 +14,15 @@ class UserModel extends Model {
     ];
 
     public function _get($level = '', $id = ''){
+        // level 0 / admin
+        if($level == 0){
+            $joinedTable = 'admin';
+        }
+        // level 0 / admin
+        else if($level == 1){
+            $joinedTable = 'karyawan';
+        }
         if(($level != null)&&($id != null)){
-            // level 0 / admin
-            if($level == '0'){
-                $joinedTable = 'admin';
-            }
-            // level 0 / admin
-            else if($level == 1){
-                $joinedTable = 'karyawan';
-            }
             // query starts
             $results = $this->select('*')
             ->join($joinedTable, ''.$joinedTable.'.username = user.username')
@@ -31,14 +31,6 @@ class UserModel extends Model {
             ->get()
             ->getResult();
         }else if($level != null){
-            // level 0 / admin
-            if($level == '0'){
-                $joinedTable = 'admin';
-            }
-            // level 0 / admin
-            else if($level == 1){
-                $joinedTable = 'karyawan';
-            }
             // query starts
             $results = $this->select('*')
             ->join($joinedTable, ''.$joinedTable.'.username = user.username')
@@ -97,7 +89,7 @@ class UserModel extends Model {
         $this->update($id, $data);
     }
 
-    public function _delete($id){
-        $this->delete($id);
+    public function _delete($username){
+        $this->delete($username);
     }
 }

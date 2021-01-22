@@ -135,7 +135,7 @@
                 <div class="container-fluid col-md-6">
                     <div class="card shadow mb-4 mt-4 border-left-primary">
                         <div class="card-header py-3">
-                            <div class="text-center text-gray-800 h3">Update Data Admin</div>
+                            <div class="text-center text-gray-800 h3">Update Data Karyawan</div>
                         </div>
                         <div class="card-body ">
                             <form class="user" action="/Pengguna/Insert/0" method="post">

@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 
 class KaryawanModel extends Model {
     protected $table = 'karyawan';
-    protected $primary_key = 'nomor_hp';
+    protected $primaryKey = 'username';
     protected $returnType = 'object';
     protected $allowedFields = [
         'nomor_hp',

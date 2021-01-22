@@ -51,9 +51,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-12">
-                    <i class="fas fa-user-md"></i>
+                    <i class="fas fa-tshirt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">STUNMAP</div>
+                <div class="sidebar-brand-text mx-3">Laundry.Ku</div>
             </a>
 
             <!-- Divider -->
@@ -62,32 +62,35 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="/">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Sidebar Heading -->
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Olah Data
-            </div>
-
-            <!-- Puskesmas -->
             <li class="nav-item">
-                <a class="nav-link" href="/Puskesmas">
-                    <i class="fas fa-fw fa-hospital"></i>
-                    <span>Data Puskesmas</span></a>
+                <a class="nav-link" href="/dataTransaksi">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>Data Transaksi</span></a>
             </li>
 
-            <!-- Posyandu -->
-
             <li class="nav-item">
-                <a class="nav-link" href="/Posyandu">
-                    <i class="fas fa-fw fa-medkit"></i>
-                    <span>Data Posyandu</span></a>
+                <a class="nav-link" href="/dataPelanggan">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Data Pelanggan</span></a>
+            </li>
+
+            <!-- Laporan -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-laporan" aria-expanded="true" aria-controls="#collapse-laporan">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Laporan</span>
+                </a>
+                <div id="collapse-laporan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Jenis Laporan:</h6>
+                        <a class="collapse-item" href="/Report/Harian">Laporan Harian</a>
+                        <a class="collapse-item" href="/Report/Keseluruhan">Laporan Keseluruhan</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Pengguna -->
@@ -101,15 +104,24 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Pengguna</h6>
                         <a class="collapse-item" href="/Pengguna/0">Admin</a>
-                        <a class="collapse-item" href="/Pengguna/1">Petugas Dinas Kesehatan</a>
-                        <a class="collapse-item" href="/Pengguna/2">Bidan Puskesmas</a>
-                        <a class="collapse-item" href="/Pengguna/3">Petugas Poli Gizi</a>
+                        <a class="collapse-item" href="/Pengguna/1">Karyawan</a>
                     </div>
                 </div>
             </li>
 
-
-
+            <!-- Profil -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span><?= $userData->nama ?></span>
+                </a>
+                <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Aksi:</h6>
+                        <a class="collapse-item" href="/Login/Logout">Logout</a>
+                    </div>
+                </div>
+            </li>
         </ul>
         <!-- End of Sidebar -->
 
@@ -126,15 +138,26 @@
                             <div class="text-center text-gray-800 h3">Tambah Data Admin</div>
                         </div>
                         <div class="card-body ">
+                            <?php
+                            if (isset($errors)) {
+                                foreach ($errors as $errorsItem) {
+                                    echo "<div class='text-danger'><i class='fas fa-fw fa-exclamation-triangle'></i> " . $errorsItem . "</div>";
+                                };
+                            }
+                            ?>
                             <form class="user" action="/Pengguna/Insert/0" method="post">
                                 <div class="form-group col justify-alignment-left">
                                     <div class="col">
-                                        <label for="nip" class="font-weight-bold">NIP</label>
-                                        <input class="form-control" required type="text" name="nip" id="nip" placeholder="NIP">
-                                    </div>
-                                    <div class="col">
                                         <label for="nama" class="font-weight-bold mt-2">Nama Lengkap</label>
                                         <input class="form-control" required type="text" name="nama" id="nama" placeholder="Nama Lengkap">
+                                    </div>
+                                    <div class="col">
+                                        <label for="nomor_hp" class="font-weight-bold mt-2">Nomor HP</label>
+                                        <input class="form-control" required type="text" name="nomor_hp" id="nomor_hp" placeholder="Nomor HP">
+                                    </div>
+                                    <div class="col">
+                                        <label for="alamat" class="font-weight-bold mt-2">Alamat</label>
+                                        <input class="form-control" required type="text" name="alamat" id="alamat" placeholder="Nama Lengkap">
                                     </div>
                                     <div class="col">
                                         <label for="username" class="font-weight-bold mt-2">Username</label>

@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Update Data Admin</title>
+    <title>Tambah Data Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -135,34 +135,41 @@
                 <div class="container-fluid col-md-6">
                     <div class="card shadow mb-4 mt-4 border-left-primary">
                         <div class="card-header py-3">
-                            <div class="text-center text-gray-800 h3">Update Data Admin</div>
+                            <div class="text-center text-gray-800 h3">Tambah Data Karyawan</div>
                         </div>
                         <div class="card-body ">
-                            <form class="user" action="/Pengguna/Insert/0" method="post">
+                            <?php
+                            if (isset($errors)) {
+                                foreach ($errors as $errorsItem) {
+                                    echo "<div class='text-danger'><i class='fas fa-fw fa-exclamation-triangle'></i> " . $errorsItem . "</div>";
+                                };
+                            }
+                            ?>
+                            <form class="user" action="/Pengguna/Insert/1" method="post">
                                 <div class="form-group col justify-alignment-left">
                                     <div class="col">
                                         <label for="nama" class="font-weight-bold mt-2">Nama Lengkap</label>
-                                        <input class="form-control" required type="text" name="nama" id="nama" value="<?=$pengguna->nama;?>">
+                                        <input class="form-control" required type="text" name="nama" id="nama" placeholder="Nama Lengkap">
                                     </div>
                                     <div class="col">
                                         <label for="nomor_hp" class="font-weight-bold mt-2">Nomor HP</label>
-                                        <input class="form-control" required type="text" name="nomor_hp" id="nomor_hp" value="<?=$pengguna->nomor_hp;?>">
+                                        <input class="form-control" required type="text" name="nomor_hp" id="nomor_hp" placeholder="Nomor HP">
                                     </div>
                                     <div class="col">
                                         <label for="alamat" class="font-weight-bold mt-2">Alamat</label>
-                                        <input class="form-control" required type="text" name="alamat" id="alamat" value="<?=$pengguna->alamat;?>">
+                                        <input class="form-control" required type="text" name="alamat" id="alamat" placeholder="Nama Lengkap">
                                     </div>
                                     <div class="col">
                                         <label for="username" class="font-weight-bold mt-2">Username</label>
-                                        <input class="form-control" required type="text" id="username" name="username" value="<?=$pengguna->username;?>">
+                                        <input class="form-control" required type="text" id="username" name="username" placeholder="Username">
                                     </div>
                                     <div class="col">
                                         <label for="password" class="font-weight-bold mt-2">Password</label>
-                                        <input class="form-control" required type="password" id="password" name="password" value="<?=$pengguna->password;?>">
+                                        <input class="form-control" required type="password" id="password" name="password" placeholder="Password">
                                     </div>
                                     <div class="col">
                                         <label for="konfirmasiPassword" class="font-weight-bold mt-2">Konfirmasi Password</label>
-                                        <input class="form-control" required type="password" id="confirmPassword" name="confirmPassword" value="<?=$pengguna->password;?>">
+                                        <input class="form-control" required type="password" id="confirmPassword" name="confirmPassword" placeholder="Konfirmasi Password">
                                     </div>
                                 </div>
                                 <div class="col justify-content-center">

@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Update Data Admin</title>
+    <title>Hapus Data Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -15,28 +15,8 @@
     <!-- Custom styles for this page -->
     <link href="/bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- Leaflet -->
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-    <!-- JS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> -->
 
-    <!-- Load Esri Leaflet from CDN -->
-    <script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js" integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ==" crossorigin=""></script>
 
-    <!-- Load Esri Leaflet Geocoder from CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.css" integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g==" crossorigin="">
-    <script src="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.js" integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA==" crossorigin=""></script>
-
-    <style>
-        .mapCanvas {
-            padding-top: 56.25%;
-        }
-    </style>
 
 </head>
 
@@ -132,60 +112,74 @@
             <div id="content">
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid col-md-6">
-                    <div class="card shadow mb-4 mt-4 border-left-primary">
+                <div class="container-fluid mb-4 mt-4">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Pilih data yang akan dihapus</h1>
+                        <!-- Breadcrumb -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item"><a href="/Pengguna/1">Data Karyawan</a></li>
+                                <li class="breadcrumb-item active">Hapus Data</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <div class="text-center text-gray-800 h3">Update Data Admin</div>
+                            <div class="row justify-content-end">
+                                <a href="/Pengguna/1" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Batal</a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="ml-2 d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#confirmationModal">
+                                    <i class="fas fa-trash fa-sm text-white-50"></i> Hapus
+                                </button>
+                            </div>
                         </div>
-                        <div class="card-body ">
-                            <form class="user" action="/Pengguna/Insert/0" method="post">
-                                <div class="form-group col justify-alignment-left">
-                                    <div class="col">
-                                        <label for="nama" class="font-weight-bold mt-2">Nama Lengkap</label>
-                                        <input class="form-control" required type="text" name="nama" id="nama" value="<?=$pengguna->nama;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="nomor_hp" class="font-weight-bold mt-2">Nomor HP</label>
-                                        <input class="form-control" required type="text" name="nomor_hp" id="nomor_hp" value="<?=$pengguna->nomor_hp;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="alamat" class="font-weight-bold mt-2">Alamat</label>
-                                        <input class="form-control" required type="text" name="alamat" id="alamat" value="<?=$pengguna->alamat;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="username" class="font-weight-bold mt-2">Username</label>
-                                        <input class="form-control" required type="text" id="username" name="username" value="<?=$pengguna->username;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="password" class="font-weight-bold mt-2">Password</label>
-                                        <input class="form-control" required type="password" id="password" name="password" value="<?=$pengguna->password;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="konfirmasiPassword" class="font-weight-bold mt-2">Konfirmasi Password</label>
-                                        <input class="form-control" required type="password" id="confirmPassword" name="confirmPassword" value="<?=$pengguna->password;?>">
-                                    </div>
-                                </div>
-                                <div class="col justify-content-center">
-                                    <div class="col">
-                                        <input class="mt-4 btn btn-success btn-user btn-block" type="submit">
-                                        <div class="mt-3 btn btn-danger btn-user btn-block" onclick="goBack()">Batal</a>
-                                        </div>
-                                    </div>
-                            </form>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Pilih</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Nomor HP</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($pengguna as $i => $penggunaItem) : ?>
+                                            <tr>
+                                                <td><input id="<?= $penggunaItem->username; ?>" type="checkbox" onclick="deleteData('<?= $penggunaItem->username; ?>')"></td>
+                                                <td><?= $penggunaItem->nama; ?></td>
+                                                <td><?= $penggunaItem->nomor_hp; ?></td>
+                                                <td><?= $penggunaItem->username; ?></td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    <!-- row -->
                 </div>
+                <!-- /.container-fluid -->
             </div>
-            <!-- row -->
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; STUNMAP 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- End of Main Content -->
-
-
-
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -214,27 +208,38 @@
         </div>
     </div>
 
+    <!-- Confirmation MODAL -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    Apakah anda yakin menghapus data?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <form action="/Pengguna/Delete/Selected/1" method="post">
+                        <input id="deleteID" name="deleteID" type="hidden">
+                        <button class="btn btn-danger" type="submit" id="deleteButton">
+                            Hapus
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Function Function -->
     <script src="/scriptKu.js"></script>
-    <!-- ================= -->
-
-    <!-- valide confirmation password -->
-    <script>
-        var password = document.getElementById("password");
-        var confirmPassword = document.getElementById("confirmPassword");
-
-        // function untuk validasi password
-        function validate() {
-            if (password.value != confirmPassword.value) {
-                confirmPassword.setCustomValidity("Password tidak sama");
-            } else {
-                confirmPassword.setCustomValidity("");
-            }
-        }
-
-        password.onchange = validate;
-        confirmPassword.onkeyup = validate;
-    </script>
     <!-- ================= -->
 
     <!-- Bootstrap core JavaScript-->

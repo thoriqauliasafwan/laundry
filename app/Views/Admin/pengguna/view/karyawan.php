@@ -3,7 +3,9 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Update Data Admin</title>
+    <title>
+        <?= $pengguna->nama ?>
+    </title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -14,6 +16,7 @@
 
     <!-- Custom styles for this page -->
     <link href="/bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="/bootstrap/vendor/chart.js/Chart.min.js"></script>
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -132,60 +135,67 @@
             <div id="content">
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid col-md-6">
-                    <div class="card shadow mb-4 mt-4 border-left-primary">
+                <div class="container-fluid mb-4 mt-4">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <!-- Breadcrumb -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item"><a href="/Pengguna/1">Data Admin</a></li>
+                                <li class="breadcrumb-item active">View</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <div class="text-center text-gray-800 h3">Update Data Admin</div>
-                        </div>
-                        <div class="card-body ">
-                            <form class="user" action="/Pengguna/Insert/0" method="post">
-                                <div class="form-group col justify-alignment-left">
-                                    <div class="col">
-                                        <label for="nama" class="font-weight-bold mt-2">Nama Lengkap</label>
-                                        <input class="form-control" required type="text" name="nama" id="nama" value="<?=$pengguna->nama;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="nomor_hp" class="font-weight-bold mt-2">Nomor HP</label>
-                                        <input class="form-control" required type="text" name="nomor_hp" id="nomor_hp" value="<?=$pengguna->nomor_hp;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="alamat" class="font-weight-bold mt-2">Alamat</label>
-                                        <input class="form-control" required type="text" name="alamat" id="alamat" value="<?=$pengguna->alamat;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="username" class="font-weight-bold mt-2">Username</label>
-                                        <input class="form-control" required type="text" id="username" name="username" value="<?=$pengguna->username;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="password" class="font-weight-bold mt-2">Password</label>
-                                        <input class="form-control" required type="password" id="password" name="password" value="<?=$pengguna->password;?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="konfirmasiPassword" class="font-weight-bold mt-2">Konfirmasi Password</label>
-                                        <input class="form-control" required type="password" id="confirmPassword" name="confirmPassword" value="<?=$pengguna->password;?>">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="#" class="text-gray-600 h5" onclick="goBack()"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                </div>
+                                <div class="col">
+                                    <div class="row justify-content-end">
+                                        <a href="/Pengguna/Update/1/<?= $pengguna->username ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Update Data</a>
+                                        <a href="/Pengguna/Delete/1/<?= $pengguna->username ?>" class="ml-2 d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> Hapus Data</a>
                                     </div>
                                 </div>
-                                <div class="col justify-content-center">
-                                    <div class="col">
-                                        <input class="mt-4 btn btn-success btn-user btn-block" type="submit">
-                                        <div class="mt-3 btn btn-danger btn-user btn-block" onclick="goBack()">Batal</a>
-                                        </div>
-                                    </div>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="col">
+                                <div class="text-gray-800 font-weight-bold mt-2 ">Nama Lengkap</div>
+                                <div class="text-gray-800"><?= $pengguna->nama ?></div>
+                                <div class="text-gray-800 font-weight-bold mt-2 ">Nomor HP</div>
+                                <div class="text-gray-800"><?= $pengguna->nomor_hp ?></div>
+                                <div class="text-gray-800 font-weight-bold mt-2 ">Alamat</div>
+                                <div class="text-gray-800"><?= $pengguna->alamat ?></div>
+                                <div class="text-gray-800 font-weight-bold mt-2 ">Username</div>
+                                <div class="text-gray-800"><?= $pengguna->username ?></div>
+                                <div class="text-gray-800 font-weight-bold mt-2 ">Password</div>
+                                <div class="text-gray-800"><a href="">Ganti Password</a></div>
+                            </div>
                         </div>
                     </div>
+                    <!-- row -->
+                    <!-- Peta Persebaran -->
+
                 </div>
+                <!-- /.container-fluid -->
             </div>
-            <!-- row -->
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; STUNMAP 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- End of Main Content -->
-
-
-
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -214,27 +224,10 @@
         </div>
     </div>
 
+
+
     <!-- Function Function -->
     <script src="/scriptKu.js"></script>
-    <!-- ================= -->
-
-    <!-- valide confirmation password -->
-    <script>
-        var password = document.getElementById("password");
-        var confirmPassword = document.getElementById("confirmPassword");
-
-        // function untuk validasi password
-        function validate() {
-            if (password.value != confirmPassword.value) {
-                confirmPassword.setCustomValidity("Password tidak sama");
-            } else {
-                confirmPassword.setCustomValidity("");
-            }
-        }
-
-        password.onchange = validate;
-        confirmPassword.onkeyup = validate;
-    </script>
     <!-- ================= -->
 
     <!-- Bootstrap core JavaScript-->
@@ -250,9 +243,6 @@
     <!-- Page level plugins -->
     <script src="/bootstrap/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/bootstrap/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/bootstrap/js/demo/datatables-demo.js"></script>
 
 </body>
 

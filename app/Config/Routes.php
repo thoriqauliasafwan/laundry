@@ -43,8 +43,10 @@ $routes->add('/Pengguna/(:num)', 'Pengguna::index');
 $routes->add('/Pengguna/New/(:num)', 'Pengguna::newForm');
 $routes->add('/Pengguna/Insert/(:num)', 'Pengguna::insert');
 $routes->add('/Pengguna/Delete/(:num)', 'Pengguna::deleteForm');
-$routes->add('/Pengguna/(:num)/(:num)', 'Pengguna::viewById');
-$routes->add('/Pengguna/Update/(:num)/(:num)', 'Pengguna::updateForm');
+$routes->add('/Pengguna/Delete/Selected/(:num)', 'Pengguna::delete');
+$routes->add('/Pengguna/Delete/(:num)/(:alphanum)', 'Pengguna::delete');
+$routes->add('/Pengguna/(:num)/(:alphanum)', 'Pengguna::viewById');
+$routes->add('/Pengguna/Update/(:num)/(:alphanum)', 'Pengguna::updateForm');
 
 /**
  * --------------------------------------------------------------------
