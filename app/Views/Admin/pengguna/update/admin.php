@@ -163,6 +163,7 @@
                                         <label for="username" class="font-weight-bold mt-2">Username</label>
                                         <input class="form-control" required type="text" id="username" name="username" value="<?= $pengguna->username; ?>">
                                     </div>
+                                    <input required type="hidden" id="usernameLama" name="usernameLama" value="<?= $pengguna->username; ?>">
                                     <div class="col">
                                         <label for="password" class="font-weight-bold mt-2">Password</label>
                                         <input class="form-control" required type="password" id="password" name="password" value="<?= $pengguna->password; ?>">
@@ -175,7 +176,7 @@
                                 <div class="col justify-content-center">
                                     <div class="col">
                                         <input class="mt-4 btn btn-success btn-user btn-block" type="submit">
-                                        <div class="mt-3 btn btn-danger btn-user btn-block" onclick="goBack()">Batal</a>
+                                        <a href="/Pengguna/0/<?= $pengguna->username ?>" class="mt-3 btn btn-danger btn-user btn-block">Batal</a>
                                         </div>
                                     </div>
                             </form>

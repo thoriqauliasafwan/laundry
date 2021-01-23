@@ -183,7 +183,11 @@ class Pengguna extends BaseController
         $level = $this->request->uri->getSegment(3);
         // print_r($level);
         // Get data dari form
-        $username = $this->request->getPost('username');
+        // get username lama dan username baru
+        // dibutuhkan bila mengganti username
+        $usernameLama = $this->request->getPost('usernameLama');
+        $usernameBaru = $this->request->getPost('username');
+        
         $password = $this->request->getPost('password');
         $nama = $this->request->getPost('nama');
         $nomor_hp = $this->request->getPost('nomor_hp');
@@ -225,19 +229,35 @@ class Pengguna extends BaseController
                 $this->session->setFlashdata('errors', $this->validator->getErrors());
                 return redirect()->back();
             } else {
-                $dataUser = [
-                    // 'username' => $username,
-                    'password' => $password,
-                    'level' => $level,
-                ];
-                $dataAdmin = [
-                    'nomor_hp' => $nomor_hp,
-                    'nama' => $nama,
-                    'alamat' => $alamat,
-                    // 'username' => $username,
-                ];
-                $userModel->_update($username, $dataUser);
-                $adminModel->_update($username, $dataAdmin);
+                // cek apakah username baru sama dengan username lama
+                if($usernameBaru != $usernameLama){
+                    $dataUser = [
+                        'username' => $usernameBaru,
+                        'password' => $password,
+                        'level' => $level,
+                    ];
+                    $dataAdmin = [
+                        'nomor_hp' => $nomor_hp,
+                        'nama' => $nama,
+                        'alamat' => $alamat,
+                        'username' => $usernameBaru,
+                    ];
+                }else if($usernameBaru == $usernameLama){
+                    $dataUser = [
+                        // 'username' => $username,
+                        'password' => $password,
+                        'level' => $level,
+                    ];
+                    $dataAdmin = [
+                        'nomor_hp' => $nomor_hp,
+                        'nama' => $nama,
+                        'alamat' => $alamat,
+                        // 'username' => $username,
+                    ];
+                }
+                
+                $userModel->_update($usernameLama, $dataUser);
+                $adminModel->_update($usernameLama, $dataAdmin);
                 return redirect()->to('/Pengguna/0');
             }
         } else if ($level == 1) {
@@ -248,19 +268,34 @@ class Pengguna extends BaseController
                 $this->session->setFlashdata('errors', $this->validator->getErrors());
                 return redirect()->back();
             } else {
-                $dataUser = [
-                    // 'username' => $username,
-                    'password' => $password,
-                    'level' => $level,
-                ];
-                $dataKaryawan = [
-                    'nomor_hp' => $nomor_hp,
-                    'nama' => $nama,
-                    'alamat' => $alamat,
-                    // 'username' => $username,
-                ];
-                $userModel->_update($username, $dataUser);
-                $karyawanModel->_update($username, $dataKaryawan);
+                // cek apakah username baru sama dengan username lama
+                if($usernameBaru != $usernameLama){
+                    $dataUser = [
+                        'username' => $usernameBaru,
+                        'password' => $password,
+                        'level' => $level,
+                    ];
+                    $dataKaryawan = [
+                        'nomor_hp' => $nomor_hp,
+                        'nama' => $nama,
+                        'alamat' => $alamat,
+                        'username' => $usernameBaru,
+                    ];
+                }else if($usernameBaru == $usernameLama){
+                    $dataUser = [
+                        // 'username' => $username,
+                        'password' => $password,
+                        'level' => $level,
+                    ];
+                    $dataKaryawan = [
+                        'nomor_hp' => $nomor_hp,
+                        'nama' => $nama,
+                        'alamat' => $alamat,
+                        // 'username' => $username,
+                    ];
+                }
+                $userModel->_update($usernameLama, $dataUser);
+                $karyawanModel->_update($usernameLama, $dataKaryawan);
                 return redirect()->to('/Pengguna/1');
             }
         }

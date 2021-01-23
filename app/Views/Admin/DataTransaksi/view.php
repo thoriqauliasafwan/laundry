@@ -132,7 +132,7 @@
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col">
-                                        <a href="#" class="text-gray-600 h5" onclick="goBack()"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                        <a href="/DataTransaksi" class="text-gray-600 h5"><i class="fa fa-arrow-left"></i> Kembali</a>
                                     </div>
                                 </div>
                             </div>
@@ -144,6 +144,8 @@
                                         <div class="text-gray-800"><?= $transaksiItem->id_transaksi ?></div>
                                         <div class="text-gray-800 font-weight-bold mt-2 ">Tanggal Masuk</div>
                                         <div class="text-gray-800"><?= $transaksiItem->tanggal_masuk ?></div>
+                                        <div class="text-gray-800 font-weight-bold mt-2 ">Tanggal Selesai</div>
+                                        <div class="text-gray-800"><?= $transaksiItem->tanggal_selesai ?></div>
                                         <div class="text-gray-800 font-weight-bold mt-2 ">Nama Pelanggan</div>
                                         <div class="text-gray-800"><?= $transaksiItem->nama_pelanggan ?></div>
                                         <div class="text-gray-800 font-weight-bold mt-2 ">Alamat Pelanggan</div>

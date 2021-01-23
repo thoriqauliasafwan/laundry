@@ -151,7 +151,7 @@
                         <div class="card-header py-3">
                             <div class="row">
                                 <div class="col">
-                                    <a href="#" class="text-gray-600 h5" onclick="goBack()"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                    <a href="/Pengguna/1" class="text-gray-600 h5"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 </div>
                                 <div class="col">
                                     <div class="row justify-content-end">
@@ -171,8 +171,6 @@
                                 <div class="text-gray-800"><?= $pengguna->alamat ?></div>
                                 <div class="text-gray-800 font-weight-bold mt-2 ">Username</div>
                                 <div class="text-gray-800"><?= $pengguna->username ?></div>
-                                <div class="text-gray-800 font-weight-bold mt-2 ">Password</div>
-                                <div class="text-gray-800"><a href="">Ganti Password</a></div>
                             </div>
                         </div>
                     </div>

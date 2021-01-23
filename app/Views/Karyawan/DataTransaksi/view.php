@@ -101,7 +101,7 @@
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col">
-                                        <a href="#" class="text-gray-600 h5" onclick="goBack()"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                        <a href="/DataTransaksi" class="text-gray-600 h5"><i class="fa fa-arrow-left"></i> Kembali</a>
                                     </div>
                                     <div class="col">
                                         <div class="row justify-content-end">
