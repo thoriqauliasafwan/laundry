@@ -1,9 +1,12 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 use App\Models\PaketModel;
 use App\Models\TransaksiModel;
 use App\Models\JenisCuciModel;
 use App\Models\PelangganModel;
+use CodeIgniter\I18n\Time;
 
 class Home extends BaseController
 {
@@ -15,7 +18,7 @@ class Home extends BaseController
 		$jenisCuciModel = new JenisCuciModel;
 		$transaksiModel = new TransaksiModel;
 		// mengirim data ke View
-		
+
 		$data = [
 			'paket' => $paketModel->_get(),
 			'jenisCuci' => $jenisCuciModel->_get(),
@@ -23,9 +26,9 @@ class Home extends BaseController
 			'userData' => $this->userData
 		];
 		$level = $this->userData->level;
-		if($level == 0){
+		if ($level == 0) {
 			return view('Admin/Home/default', $data);
-		}else if($level == 1){
+		} else if ($level == 1) {
 			return view('Karyawan/Home/default', $data);
 		}
 	}
@@ -48,10 +51,12 @@ class Home extends BaseController
 	}
 
 	// method insert data transaksi
-	public function insertNew(){
+	// member baru
+	public function insertNew()
+	{
 		// cek apakah form di klik submit
 		// atau disebut form mengirim method post
-		if($this->request->getMethod() === 'post'){
+		if ($this->request->getMethod() === 'post') {
 			// inisialisasi model
 			$model = new TransaksiModel;
 			$paketModel = new PaketModel;
@@ -68,14 +73,21 @@ class Home extends BaseController
 
 			// mengambil harga perkilo sesuai paket yang dipilih
 			$hargaPaket = $paketModel->_get($id_paket)->kelipatan_harga;
+			$durasiPaket = $paketModel->_get($id_paket)->durasi;
 			$hargaJenisCuci = $jenisCuciModel->_get($id_jenis)->harga_cuci;
-			
+
 			// menghitung harga total
 			$harga_total = $berat * $hargaJenisCuci * $hargaPaket;
+
+			// menghitung tanggal selesai
+			$tanggalSekarangObj = new Time('now');
+			$tanggalSelesaiObj = $tanggalSekarangObj->addDays($durasiPaket);
+			$tanggalSelesai = $tanggalSelesaiObj->toDateString();
 
 			// memasukkan data-data ke dalam satu array $data
 			$dataTransaksi = [
 				'nama_pelanggan' => $nama_pelanggan,
+				'tanggal_selesai' => $tanggalSelesai,
 				'berat' => $berat,
 				'id_paket' => $id_paket,
 				'id_jenis' => $id_jenis,
@@ -92,15 +104,17 @@ class Home extends BaseController
 
 			$lastID = $model->_getLast()[0]->id_transaksi;
 			// load successView untuk menampilkan konfirmasi transaksi
-			return redirect()->to('/DataTransaksi/viewById/'.$lastID);
+			return redirect()->to('/DataTransaksi/viewById/' . $lastID);
 		}
 	}
 
 	// method insert data transaksi
-	public function insert(){
+	// member lama
+	public function insert()
+	{
 		// cek apakah form di klik submit
 		// atau disebut form mengirim method post
-		if($this->request->getMethod() === 'post'){
+		if ($this->request->getMethod() === 'post') {
 			// inisialisasi model
 			$model = new TransaksiModel;
 			$paketModel = new PaketModel;
@@ -114,14 +128,21 @@ class Home extends BaseController
 
 			// mengambil harga perkilo sesuai paket yang dipilih
 			$hargaPaket = $paketModel->_get($id_paket)->kelipatan_harga;
+			$durasiPaket = $paketModel->_get($id_paket)->durasi;
 			$hargaJenisCuci = $jenisCuciModel->_get($id_jenis)->harga_cuci;
-			
+
 			// menghitung harga total
 			$harga_total = $berat * $hargaJenisCuci * $hargaPaket;
+
+			// menghitung tanggal selesai
+			$tanggalSekarangObj = new Time('now');
+			$tanggalSelesaiObj = $tanggalSekarangObj->addDays($durasiPaket);
+			$tanggalSelesai = $tanggalSelesaiObj->toDateString();
 
 			// memasukkan data-data ke dalam satu array $data
 			$dataTransaksi = [
 				'nama_pelanggan' => $nama_pelanggan,
+				'tanggal_selesai' => $tanggalSelesai,
 				'berat' => $berat,
 				'id_paket' => $id_paket,
 				'id_jenis' => $id_jenis,
@@ -131,15 +152,16 @@ class Home extends BaseController
 			$model->_insert($dataTransaksi);
 
 			// get data transaksi terakhir untuk konfirmasi
-			
+
 			$lastID = $model->_getLast()[0]->id_transaksi;
 			// load successView untuk menampilkan konfirmasi transaksi
-			return redirect()->to('/DataTransaksi/viewById/'.$lastID);
+			return redirect()->to('/DataTransaksi/viewById/' . $lastID);
 		}
 	}
 
 	// method untuk search data pelanggan
-	public function searchName(){
+	public function searchName()
+	{
 		$pelangganModel = new PelangganModel;
 		$name = $this->request->getVar('q');
 		$data = $pelangganModel->_search($name);
@@ -147,7 +169,8 @@ class Home extends BaseController
 	}
 
 	// method hapus data
-	public function delete(){
+	public function delete()
+	{
 		$model = new TransaksiModel;
 		$id_transaksi = $this->request->uri->getSegment('3');
 		$model->_delete($id_transaksi);

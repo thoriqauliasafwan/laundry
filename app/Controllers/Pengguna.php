@@ -167,11 +167,102 @@ class Pengguna extends BaseController
             'userData' => $this->userData,
             'pengguna' => $userModel->_get($level, $nip)[0],
             'alert' => $this->session->getFlashdata('alert'),
+            'errors' => $this->session->getFlashdata('errors')
         ];
         if ($level == 0) {
             echo view('admin/pengguna/update/admin', $data);
         } else if ($level == 1) {
             echo view('admin/pengguna/update/karyawan', $data);
+        }
+    }
+
+    // Method insert data
+    public function update()
+    {
+        $userModel = new userModel;
+        $level = $this->request->uri->getSegment(3);
+        // print_r($level);
+        // Get data dari form
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+        $nama = $this->request->getPost('nama');
+        $nomor_hp = $this->request->getPost('nomor_hp');
+        $alamat = $this->request->getPost('alamat');
+        // =================================
+        // Validation Rules and Messages
+        $validationRules = [
+            // 'username' => 'required|is_unique[user.username]|max_length[20]',
+            'password' => 'required|max_length[16]',
+            'nama' => 'required|alpha_space',
+            'nomor_hp' => 'required|max_length[13]|numeric',
+            'alamat' => 'required|max_length[50]',
+        ];
+        $validationMessages = [
+            'password' => [
+                'required' => 'username wajib diisi',
+                'max_length' => 'password terlalu panjang'
+            ],
+            'nama' => [
+                'required' => 'username wajib diisi',
+                'alpha_space' => 'nama harus berupa huruf'
+            ],
+            'nomor_hp' => [
+                'required' => 'username wajib diisi',
+                'max_length' => 'nomor hp terlalu panjang',
+                'numeric' => 'nomor hp harus berupa angka'
+            ],
+            'alamat' => [
+                'required' => 'username wajib diisi',
+                'max_length' => 'alamat terlalu panjang'
+            ],
+        ];
+        // =================================
+        if ($level == 0) {
+            $adminModel = new AdminModel;
+            $level = 0;
+            // validate
+            if (!$this->validate($validationRules, $validationMessages)) {
+                $this->session->setFlashdata('errors', $this->validator->getErrors());
+                return redirect()->back();
+            } else {
+                $dataUser = [
+                    // 'username' => $username,
+                    'password' => $password,
+                    'level' => $level,
+                ];
+                $dataAdmin = [
+                    'nomor_hp' => $nomor_hp,
+                    'nama' => $nama,
+                    'alamat' => $alamat,
+                    // 'username' => $username,
+                ];
+                $userModel->_update($username, $dataUser);
+                $adminModel->_update($username, $dataAdmin);
+                return redirect()->to('/Pengguna/0');
+            }
+        } else if ($level == 1) {
+            $karyawanModel = new KaryawanModel;
+            $level = 1;
+            // validate
+            if (!$this->validate($validationRules, $validationMessages)) {
+                $this->session->setFlashdata('errors', $this->validator->getErrors());
+                return redirect()->back();
+            } else {
+                $dataUser = [
+                    // 'username' => $username,
+                    'password' => $password,
+                    'level' => $level,
+                ];
+                $dataKaryawan = [
+                    'nomor_hp' => $nomor_hp,
+                    'nama' => $nama,
+                    'alamat' => $alamat,
+                    // 'username' => $username,
+                ];
+                $userModel->_update($username, $dataUser);
+                $karyawanModel->_update($username, $dataKaryawan);
+                return redirect()->to('/Pengguna/1');
+            }
         }
     }
 

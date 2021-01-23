@@ -47,6 +47,7 @@ $routes->add('/Pengguna/Delete/Selected/(:num)', 'Pengguna::delete');
 $routes->add('/Pengguna/Delete/(:num)/(:alphanum)', 'Pengguna::delete');
 $routes->add('/Pengguna/(:num)/(:alphanum)', 'Pengguna::viewById');
 $routes->add('/Pengguna/Update/(:num)/(:alphanum)', 'Pengguna::updateForm');
+$routes->add('/Pengguna/Update/(:num)', 'Pengguna::update');
 
 /**
  * --------------------------------------------------------------------

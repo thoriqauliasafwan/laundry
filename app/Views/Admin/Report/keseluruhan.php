@@ -41,8 +41,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="/">
-                    <i class="fas fa-fw fa-cart-plus"></i>
-                    <span>Transaksi</span></a>
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span></a>
             </li>
 
             <li class="nav-item">
@@ -59,15 +59,45 @@
 
             <!-- Laporan -->
             <li class="nav-item active">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-laporan" aria-expanded="true" aria-controls="#collapse-laporan">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Laporan</span>
                 </a>
-                <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapse-laporan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Laporan:</h6>
                         <a class="collapse-item" href="/Report/Harian">Laporan Harian</a>
                         <a class="collapse-item" href="/Report/Keseluruhan">Laporan Keseluruhan</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Pengguna -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Data Pengguna</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Jenis Pengguna</h6>
+                        <a class="collapse-item" href="/Pengguna/0">Admin</a>
+                        <a class="collapse-item" href="/Pengguna/1">Karyawan</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Profil -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pengguna" aria-expanded="true" aria-controls="#collapse-pengguna">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span><?= $userData->nama ?></span>
+                </a>
+                <div id="collapse-pengguna" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Aksi:</h6>
+                        <a class="collapse-item" href="/Login/Logout">Logout</a>
                     </div>
                 </div>
             </li>
